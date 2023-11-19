@@ -1,0 +1,51 @@
+#include <iostream>
+
+using namespace std;
+
+const int ROWS = 3;
+const int COLS = 3;
+
+string studentID = "YourStudentID";
+int electricityMatrix[ROWS][COLS] = {
+    {55, 65, 75},
+    {120, 150, 170},
+    {210, 230, 240}
+};
+
+void calculateAndDisplayCost(int slab, int rate) {
+    cout << "Cost for Slab " << slab << ":" << endl;
+    for (int i = 0; i < COLS; ++i) {
+        int units = electricityMatrix[slab - 1][i];
+        int cost = units * rate;
+        cout << "For unit " << units << ": Rs. " << cost << endl;
+    }
+}
+
+int main() {
+    char choice;
+
+    do {
+        cout << "Student ID: " << studentID << endl;
+        cout << "1. Display the bill of slab 1 and slab 2" << endl;
+        cout << "2. Display the bill of slab 3" << endl;
+        cout << "Any other key to exit" << endl;
+
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case '1':
+                calculateAndDisplayCost(1, 10);  // Slab 1, rate = 10
+                calculateAndDisplayCost(2, 15);  // Slab 2, rate = 15
+                break;
+            case '2':
+                calculateAndDisplayCost(3, 20);  // Slab 3, rate = 20
+                break;
+            default:
+                cout << "Exiting program." << endl;
+                break;
+        }
+    } while (choice == '1' || choice == '2');
+
+    return 0;
+}
